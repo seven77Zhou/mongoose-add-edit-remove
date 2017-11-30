@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>添加</title>
+		<style type="text/css">
+			.page{ padding-top: 50px; width: 400px; margin: 0 auto;}
+			.page div{margin-bottom: 15px;}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form action="/doedit" method="get">
+				<div>
+					<span>学号：</span>
+					<input type="text" name="sid" id="" value="<%=student.sid%>" />
+				</div>
+				<div>
+					<span>姓名：</span>
+					<input type="text" name="sname" id="" value="<%=student.sname%>" />
+				</div>
+				<div>
+					<span>年龄：</span>
+					<input type="text" name="sage" id="" value="<%=student.sage%>" />
+				</div>
+				<div>
+					<span>课程：</span>
+					<% for(var i=0; i<kecheng.length; i++) {%>
+						<% if(student.kecheng.indexOf(kecheng[i].kid) != -1) {%> 
+							<input type="checkbox" name="kecheng" id="kc<%=kecheng[i].kid%>" value="<%=kecheng[i].kid%>" checked="checked" />
+						<%}else{%>
+							<input type="checkbox" name="kecheng" id="kc<%=kecheng[i].kid%>" value="<%=kecheng[i].kid%>" />
+						<%}%>
+						<label for="kc<%=kecheng[i].kid%>"><%=kecheng[i].kname%></label>
+					<%}%>
+				</div>
+				<input type="submit" value="提交"/>
+			</form>
+		</div>
+	</body>
+</html>

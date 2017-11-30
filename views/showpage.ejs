@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>添加学生</title>
+		<style type="text/css">
+			.page{ width: 650px; margin: 0 auto;}
+			th,td{ width: 120px; height: 30px; line-height:  30px; text-align: center;}
+			h2{ margin: 20px 0;}
+			.kecheng{ width: 200px;}
+			.kecheng span{ margin:0 5px ;}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<h2><a class="add" href="/add">添加学生</a></h2>
+			
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th class="kecheng">所选课程</th>
+					<th>操作</th>
+				</tr>
+				
+				<%for(var i=0; i<students.length; i++) {%>
+					<tr>
+					<td><%=students[i].sid%></td>
+					<td><%=students[i].sname%></td>
+					<td><%=students[i].sage%></td>
+						
+					<td class="kecheng">
+						<%for(var j=0; j<students[i].kecheng.length; j++) {%>
+							<span><%=students[i].kecheng[j]%></span>							
+						<%}%>
+					</td>
+						
+					<td><a href="/edit?sid=<%=students[i].sid%>">修改</a>&nbsp;&nbsp;<a href="/remove?sid=<%=students[i].sid%>">删除</a></td>
+					</tr>
+				<%}%>
+				
+			</table>
+		</div>
+	<script src="https://file.digitaling.com/js/jquery/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//根据返回的课程id对应课程名
+		var kecheng = {'k10':"数学","k11":"英语","k12":"美术","k13":"体育"};
+		var doms = $('td.kecheng span');
+		for(var i=0; i<doms.length ; i++){
+			console.log($(doms[i]).html())
+			switch ($(doms[i]).html())
+			  {
+			  case '10':
+			    $(doms[i]).html(kecheng.k10);
+			    break;
+			  case '11':
+			    $(doms[i]).html(kecheng.k11);
+			    break;
+			  case '12':
+			    $(doms[i]).html(kecheng.k12);
+			    break;
+			  case '13':
+			    $(doms[i]).html(kecheng.k13);
+			    break;
+			  default:
+					console.log('无');
+					break;
+			  }
+		}
+		
+	</script>
+	</body>
+</html>
